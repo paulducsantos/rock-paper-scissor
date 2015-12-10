@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
   var hands = ["rock", "paper", "scissors"];
   var playerWins = 0;
   var computerWins = 0;
@@ -14,31 +13,36 @@ $(document).ready(function(){
     }
     gameCount++;
     var playerHand = $(this).data("throw");
-    var compSelect = hands[Math.floor(Math.random()*3)];
+    var compSelect = hands[Math.floor(Math.random()*hands.length)];
     
-    // change to case statement instead
-    // if (playerHand === compSelect){
-    //   alert("tie game");
-    // } else if (playerHand === "rock" && compSelect === "paper"){
-    //   alert("you lose");
-    //   computerWins++;
-    // } else if (playerHand === "rock" && compSelect === "scissors"){
-    //   alert("you win");
-    //   playerWins++;
-    // } else if (playerHand === "paper" && compSelect === "rock"){
-    //   alert("you win");
-    //   playerWins++;
-    // } else if (playerHand === "paper" && compSelect === "scissors"){
-    //   alert("you lose");
-    //   computerWins++;
-    // } else if (playerHand === "scissors" && compSelect === "rock"){
-    //   alert("you lose");
-    //   computerWins++;
-    // } else if (playerHand === "scissors" && compSelect === "paper"){
-    //   alert("you win");
-    //   playerWins++;
-    // }
+    $("#round-count").html(gameCount);
     
+
+    if (playerHand === compSelect){
+      alert("tie game");
+    } else if (playerHand === "rock" && compSelect === "paper"){
+      alert("you lose");
+      computerWins++;
+    } else if (playerHand === "rock" && compSelect === "scissors"){
+      alert("you win");
+      playerWins++;
+    } else if (playerHand === "paper" && compSelect === "rock"){
+      alert("you win");
+      playerWins++;
+    } else if (playerHand === "paper" && compSelect === "scissors"){
+      alert("you lose");
+      computerWins++;
+    } else if (playerHand === "scissors" && compSelect === "rock"){
+      alert("you lose");
+      computerWins++;
+    } else if (playerHand === "scissors" && compSelect === "paper"){
+      alert("you win");
+      playerWins++;
+    }
+
+    $("#player-wins").html(playerWins);
+    $("#computer-wins").html(computerWins);
+
     console.log("you picked " + playerHand, "computer picked " + compSelect);
     console.log("player wins " + playerWins, ", computerWins " + computerWins, ", games played " + gameCount);
   });

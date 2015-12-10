@@ -1,0 +1,38 @@
+.ring {
+  height: 227px;
+  width: 258px;
+  background-image: url(../images/Backgrounds.png);
+  z-index: -10;
+}
+
+
+.littleMac {
+  height: 65px;
+  width: 29px;
+  background: url(../images/little-mac.png) -85px -85px;
+
+  animation: little-mac .6s steps(2) infinite;
+}
+
+@keyframes little-mac {
+  100%{
+    background-position: -162px -85px;
+  }
+}
+
+.mikeTyson {
+  display: block;
+  height: 117px;
+  width: 74px;
+  background: url(../images/tyson-steady.png);
+  
+  animation: mike 0.6s steps(4) infinite;
+
+}
+
+@keyframes mike {
+   100% {
+    background-position: -252px;
+   }
+}
+
