@@ -19,31 +19,31 @@ $(document).ready(function(){
     
 
     if (playerHand === compSelect){
-      alert("tie game");
-      // dodge animation function
+      console.log("tie game");
+      tieGame();
     } else if (playerHand === "rock" && compSelect === "paper"){
-      alert("you lose");
-      // you get hit animation
+      console.log("you lose");
+      getHit();
       computerWins++;
     } else if (playerHand === "rock" && compSelect === "scissors"){
-      alert("you win");
-      // you punch animation
+      console.log("you win");
+      attack();
       playerWins++;
     } else if (playerHand === "paper" && compSelect === "rock"){
-      alert("you win");
-      // you punch animation
+      console.log("you win");
+      attack();
       playerWins++;
     } else if (playerHand === "paper" && compSelect === "scissors"){
-      alert("you lose");
-      // you get hit animation
+      console.log("you lose");
+      getHit();
       computerWins++;
     } else if (playerHand === "scissors" && compSelect === "rock"){
-      alert("you lose");
-      // you get hit animation
+      console.log("you lose");
+      getHit();
       computerWins++;
     } else if (playerHand === "scissors" && compSelect === "paper"){
-      alert("you win");
-      // you punch animation
+      console.log("you win");
+      attack();
       playerWins++;
     }
 
@@ -54,6 +54,42 @@ $(document).ready(function(){
     console.log("player wins " + playerWins, ", computerWins " + computerWins, ", games played " + gameCount);
   });
 
-  
+    function tieGame (){
+        $(".little-mac-animate").toggleClass("little-mac-animate little-mac-dodge-left");
+        $(".littleMac").toggleClass("littleMac dodge-left");
+        $(".tyson-animate").toggleClass("tyson-animate tyson-punch");
+        $(".mikeTyson").toggleClass("mikeTyson tyson-left-upper");
+        setTimeout(function(){
+            $(".little-mac-dodge-left").toggleClass("little-mac-animate little-mac-dodge-left");
+            $(".dodge-left").toggleClass("littleMac dodge-left");
+            $(".tyson-punch").toggleClass("tyson-animate tyson-punch");
+            $(".tyson-left-upper").toggleClass("mikeTyson tyson-left-upper");
+        }, 1500)
+    }
+
+    function getHit(){
+        $(".little-mac-animate").toggleClass("little-mac-animate");
+        $(".littleMac").toggleClass("littleMac little-mac-hit");
+        $(".tyson-animate").toggleClass("tyson-animate tyson-punch");
+        $(".mikeTyson").toggleClass("mikeTyson tyson-left-upper");
+        setTimeout(function(){
+            $(".little-mac-animate").toggleClass("little-mac-animate");
+            $(".little-mac-hit").toggleClass("littleMac little-mac-hit");
+            $(".tyson-punch").toggleClass("tyson-animate tyson-punch");
+            $(".tyson-left-upper").toggleClass("mikeTyson tyson-left-upper");
+        }, 1500)
+    }
+
+    function attack(){
+        $(".little-mac-animate").toggleClass("little-mac-animate little-mac-attack");
+        $(".littleMac").toggleClass("littleMac little-mac-punch");
+        $(".mikeTyson").toggleClass("mikeTyson tyson-hit");
+        setTimeout(function(){
+            $(".little-mac-attack").toggleClass("little-mac-animate little-mac-attack");
+            $(".little-mac-punch").toggleClass("littleMac little-mac-punch");
+            $(".tyson-hit").toggleClass("mikeTyson tyson-hit");
+        }, 1500)
+    }
+
 
 });
