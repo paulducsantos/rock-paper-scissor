@@ -34,6 +34,20 @@
   -webkit-animation: shift-left .8s;
 }
 
+/*animation to shift little mac container left to dodge*/
+@keyframes shift-left {
+  0% {left:50%}
+  50% {left: 48%}
+  100% {left: 50%}
+}
+
+/*animation to shift little mac container right to dodge*/
+@keyframes shift-right {
+  0% {left:50%}
+  50% {left: 52%}
+  100% {left: 50%}
+}
+
 /*little mac dodge right animation starter*/
 .little-mac-dodge-left{
   -webkit-animation: shift-right .8s;
@@ -86,19 +100,8 @@
   }
 }
 
-/*animation to shift little mac container left to dodge*/
-@keyframes shift-left {
-  0% {left:50%}
-  50% {left: 48%}
-  100% {left: 50%}
-}
 
-/*animation to shift little mac container right to dodge*/
-@keyframes shift-right {
-  0% {left:50%}
-  50% {left: 52%}
-  100% {left: 50%}
-}
+
 /*-------------------TYSON STUFF ---------------------------------------------*/
 .tyson-container{
   width:75px;
@@ -120,7 +123,7 @@
 
 /*tyson animation starter for standing still*/
 .tyson-container{
-  -webkit-animation:tyson-stand .4s infinite;
+  -webkit-animation:tyson-punch .4s infinite;
 }
 
 /*tyson standing animation*/
@@ -139,3 +142,45 @@
    }
 }
 
+/*tyson left upper animation*/
+.tyson-left-upper {
+  display: block;
+  height: 117px;
+  width: 74px;
+  background: url(../images/tyson-left-upper.png); 
+  animation: tyson-left-upper 1s steps(4);
+}
+
+/*tyson sprite stitching*/
+@keyframes tyson-left-upper {
+   100% {
+    background-position: -272px;
+   }
+}
+
+.tyson-right-upper {
+  display: block;
+  height: 117px;
+  width: 74px;
+  background: url(../images/tyson-right-upper.png); 
+  animation: tyson-right-upper 1s steps(4);
+}
+
+/*tyson sprite stitching*/
+@keyframes tyson-right-upper {
+   100% {
+    background-position: -272px;
+   }
+}
+
+/*animation to move tyson forward to punch*/
+@keyframes tyson-punch {
+  0% {top:40px}
+  50% {top: 55px}
+  100% {top: 40px}
+}
+
+/*tyson punch forward animation starter*/
+.tyson-punch{
+  -webkit-animation: tyson-punch .8s;
+}

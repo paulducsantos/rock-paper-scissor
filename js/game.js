@@ -20,23 +20,30 @@ $(document).ready(function(){
 
     if (playerHand === compSelect){
       alert("tie game");
+      // dodge animation function
     } else if (playerHand === "rock" && compSelect === "paper"){
       alert("you lose");
+      // you get hit animation
       computerWins++;
     } else if (playerHand === "rock" && compSelect === "scissors"){
       alert("you win");
+      // you punch animation
       playerWins++;
     } else if (playerHand === "paper" && compSelect === "rock"){
       alert("you win");
+      // you punch animation
       playerWins++;
     } else if (playerHand === "paper" && compSelect === "scissors"){
       alert("you lose");
+      // you get hit animation
       computerWins++;
     } else if (playerHand === "scissors" && compSelect === "rock"){
       alert("you lose");
+      // you get hit animation
       computerWins++;
     } else if (playerHand === "scissors" && compSelect === "paper"){
       alert("you win");
+      // you punch animation
       playerWins++;
     }
 
