@@ -5,31 +5,134 @@
   z-index: -10;
 }
 
+.little-mac-container{
+  width:50px;
+  height:100px;
+  /*background:rgba(0,0,255,0.5);*/
+  position:absolute;
+  top:120px;
+  left:50%;
+  margin-left:-100px;
+  z-index: 10;
+}
 
+
+/*bounce for little mac for standing still*/
+@-webkit-keyframes little-mac-stand{
+  0%{top:120px;}
+  50%{top:125px;}
+  100%{top:120px;}
+}
+
+/*little mac animation starter for standing still*/
+.little-mac-container{
+  -webkit-animation:little-mac-stand .3s infinite;
+}
+
+/*little mac dodge left animation starter*/
+.little-mac-dodge-left{
+  -webkit-animation: shift-left .8s;
+}
+
+/*little mac dodge right animation starter*/
+.little-mac-dodge-left{
+  -webkit-animation: shift-right .8s;
+}
+
+
+
+/*little mac standing still sprite frames*/
 .littleMac {
   height: 65px;
   width: 29px;
   background: url(../images/little-mac.png) -85px -85px;
-
   animation: little-mac .6s steps(2) infinite;
 }
 
-@keyframes little-mac {
+/*little mac dodge left frame animation*/
+.dodge-left {
+  height: 65px;
+  width: 29px;
+  background: url(../images/little-mac.png) -85px -85px;
+  animation: dodge-left .4s steps(2);
+}
+
+/*stitch little mac standing frames*/
+@-webkit-keyframes little-mac {
   100%{
     background-position: -162px -85px;
   }
 }
 
+/*stitch little mac dodge left frames*/
+@-webkit-keyframes dodge-left {
+  100%{
+    background-position: -645px -85px;
+  }
+}
+
+/*stitch little mac dodge left frames*/
+.dodge-right {
+  height: 65px;
+  width: 29px;
+  background: url(../images/little-mac.png) -85px -85px;
+  animation: dodge-right .4s steps(2);
+}
+
+/*little mac frame that will dodge right*/
+@-webkit-keyframes dodge-right {
+  100%{
+    background-position: -575px -85px;
+  }
+}
+
+/*animation to shift little mac container left to dodge*/
+@keyframes shift-left {
+  0% {left:50%}
+  50% {left: 48%}
+  100% {left: 50%}
+}
+
+/*animation to shift little mac container right to dodge*/
+@keyframes shift-right {
+  0% {left:50%}
+  50% {left: 52%}
+  100% {left: 50%}
+}
+/*-------------------TYSON STUFF ---------------------------------------------*/
+.tyson-container{
+  width:75px;
+  height:120px;
+  /*background:rgba(0,0,100,0.5);*/
+  position:absolute;
+  top:40px;
+  left:50%;
+  margin-left:-100px;
+  z-index: 5;
+}
+
+/*bounce for tyson for standing still*/
+@-webkit-keyframes tyson-stand{
+  0%{top:40px;}
+  50%{top:45px;}
+  100%{top:40px;}
+}
+
+/*tyson animation starter for standing still*/
+.tyson-container{
+  -webkit-animation:tyson-stand .4s infinite;
+}
+
+/*tyson standing animation*/
 .mikeTyson {
   display: block;
   height: 117px;
   width: 74px;
-  background: url(../images/tyson-steady.png);
-  
+  background: url(../images/tyson-steady.png); 
   animation: mike 0.6s steps(4) infinite;
-
 }
 
+/*tyson sprite stitching*/
 @keyframes mike {
    100% {
     background-position: -252px;
