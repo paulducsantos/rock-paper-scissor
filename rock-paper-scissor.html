@@ -5,18 +5,29 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="styles/game.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
 
 </head>
 <body>
 
-
-  <div class="little-mac-container little-mac-animate">
-    <div class="littleMac"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="ring">
+          <div id="health"></div>
+          <div id="round">Round:<span id="round-count">0</span></div>
+        </div>
+        <div class="little-mac-container little-mac-animate">
+          <div class="littleMac"></div>
+        </div>
+        
+        <div class="tyson-container tyson-animate">
+          <div class="mikeTyson"></div>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- <div class="ring"></div> -->
-  <div class="tyson-container tyson-animate">
-    <div class="mikeTyson"></div>
-  </div>
+  
   
 
   <div class="container">
@@ -39,7 +50,7 @@
     </div>
   </div>
 
-  <div>Round:<span id="round-count">0</span></div>
+  
   <div>Player Wins:<span id="player-wins">0</span></div>
   <div>Computer Wins:<span id="computer-wins">0</span></div>
 

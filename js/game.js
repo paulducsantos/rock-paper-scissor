@@ -3,19 +3,22 @@ $(document).ready(function(){
   var hands = ["rock", "paper", "scissors"];
   var playerWins = 0;
   var computerWins = 0;
-  var gameCount = 0;
+  var roundCount = 0;
+  var playerHealth = 100;
+
+  $("#health").html(playerHealth);
 
   $("button").on("click", function(){
-    if (gameCount === 5){
+    if (roundCount === 5){
     playerWins = 0;
     computerWins = 0;
-    gameCount = 0;
+    roundCount = 0;
     }
-    gameCount++;
+    roundCount++;
     var playerHand = $(this).data("throw");
     var compSelect = hands[Math.floor(Math.random()*hands.length)];
     
-    $("#round-count").html(gameCount);
+    $("#round-count").html(roundCount);
     
 
     if (playerHand === compSelect){
@@ -25,6 +28,7 @@ $(document).ready(function(){
       console.log("you lose");
       getHit();
       computerWins++;
+      playerHealth-= 25;
     } else if (playerHand === "rock" && compSelect === "scissors"){
       console.log("you win");
       attack();
@@ -37,10 +41,12 @@ $(document).ready(function(){
       console.log("you lose");
       getHit();
       computerWins++;
+      playerHealth-= 25;
     } else if (playerHand === "scissors" && compSelect === "rock"){
       console.log("you lose");
       getHit();
       computerWins++;
+      playerHealth-= 25;
     } else if (playerHand === "scissors" && compSelect === "paper"){
       console.log("you win");
       attack();
@@ -49,9 +55,10 @@ $(document).ready(function(){
 
     $("#player-wins").html(playerWins);
     $("#computer-wins").html(computerWins);
-
+    $("#health").html(playerHealth);
+    healthCheck();
     console.log("you picked " + playerHand, "computer picked " + compSelect);
-    console.log("player wins " + playerWins, ", computerWins " + computerWins, ", games played " + gameCount);
+    console.log("player wins " + playerWins, ", computerWins " + computerWins, ", games played " + roundCount);
   });
 
     function tieGame (){
@@ -89,6 +96,12 @@ $(document).ready(function(){
             $(".little-mac-punch").toggleClass("littleMac little-mac-punch");
             $(".tyson-hit").toggleClass("mikeTyson tyson-hit");
         }, 1100)
+    }
+
+    function healthCheck(){
+        if (playerHealth === 0){
+            alert("get up!");
+        }
     }
 
 

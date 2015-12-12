@@ -1,8 +1,36 @@
+*{
+  font-family: 'Press Start 2P', cursive;
+}
+
 .ring {
-  height: 227px;
-  width: 258px;
-  background-image: url(../images/Backgrounds.png);
+  height: 40em;
+  background: url(../images/punch-out-ring.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   z-index: -10;
+}
+
+#health {
+  position: relative;
+  width: 45px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 1em;
+  left: 130px;
+  top: 36px;
+}
+
+#round {
+  position: relative;
+  background-color: black;
+  border: solid 2px blue;
+  text-align: center;
+  width: 275px;
+  color: white;
+  font-size: 1.2em;
+  top: 36px;
+  left: 200px;
 }
 
 .little-mac-container{
@@ -10,18 +38,28 @@
   height:100px;
   /*background:rgba(0,0,255,0.5);*/
   position:absolute;
-  top:120px;
+  top:340px;
   left:50%;
-  margin-left:-100px;
+
   z-index: 10;
 }
 
+.little-mac-container littleMac{
+  width:100%;
+  height:auto;
+  /*background:rgba(0,0,255,0.5);*/
+  position:absolute;
+  top:340px;
+  left:50%;
+
+  z-index: 10;
+}
 
 /*bounce for little mac for standing still*/
 @-webkit-keyframes little-mac-stand{
-  0%{top:120px;}
-  50%{top:125px;}
-  100%{top:120px;}
+  0%{top:340px;}
+  50%{top:345px;}
+  100%{top:340px;}
 }
 
 /*little mac animation starter for standing still*/
@@ -60,6 +98,7 @@
   height: 65px;
   width: 29px;
   background: url(../images/little-mac.png) -85px -85px;
+  zoom: 2;
   animation: little-mac .6s steps(2) infinite;
 }
 
@@ -68,6 +107,7 @@
   height: 65px;
   width: 29px;
   background: url(../images/little-mac.png) -85px -85px;
+  zoom: 2;
   animation: dodge-left .4s steps(2);
 }
 
@@ -90,6 +130,7 @@
   height: 65px;
   width: 29px;
   background: url(../images/little-mac.png) -85px -85px;
+  zoom: 2;
   animation: dodge-right .4s steps(2);
 }
 
@@ -104,6 +145,7 @@
   height: 65px;
   width: 29px;
   background: url(../images/little-mac.png) -85px -85px;
+  zoom: 2;
   animation: little-mac-hit 1s steps(2);
 }
 
@@ -117,6 +159,7 @@
   height: 65px;
   width: 29px;
   background: url(../images/little-mac.png) -85px -85px;
+  zoom: 2;
   animation: little-mac-punch 1s steps(2);
 }
 
@@ -128,10 +171,10 @@
 }
 
 @keyframes little-mac-attack {
-  0% {top:120px}
-  50% {top: 80px;
-            -webkit-transform: scale(1.2);}
-  100% {top: 120px}
+  0% {top:340px}
+  50% {top: 300px;
+            -webkit-transform: scale(1);}
+  100% {top: 340px}
 }
 
 .little-mac-attack{
@@ -145,17 +188,16 @@
   height:120px;
   /*background:rgba(0,0,100,0.5);*/
   position:absolute;
-  top:40px;
+  top:250px;
   left:50%;
-  margin-left:-100px;
   z-index: 5;
 }
 
 /*bounce for tyson for standing still*/
 @-webkit-keyframes tyson-stand{
-  0%{top:40px;}
-  50%{top:45px;}
-  100%{top:40px;}
+  0%{top:250px;}
+  50%{top:255px;}
+  100%{top:250px;}
 }
 
 /*tyson animation starter for standing still*/
@@ -168,7 +210,8 @@
   display: block;
   height: 117px;
   width: 74px;
-  background: url(../images/tyson-steady.png); 
+  background: url(../images/tyson-steady.png);
+  zoom: 1.5;
   animation: mike 0.6s steps(4) infinite;
 }
 
@@ -185,6 +228,7 @@
   height: 117px;
   width: 74px;
   background: url(../images/tyson-left-upper.png); 
+  zoom: 1.5;
   animation: tyson-left-upper .4s steps(4);
 }
 
@@ -199,7 +243,8 @@
   display: block;
   height: 117px;
   width: 74px;
-  background: url(../images/tyson-right-upper.png); 
+  background: url(../images/tyson-right-upper.png);
+  zoom: 1.5;
   animation: tyson-right-upper 1s steps(4);
 }
 
@@ -212,9 +257,10 @@
 
 /*animation to move tyson forward to punch*/
 @keyframes tyson-punch {
-  0% {top:40px}
-  50% {top: 55px}
-  100% {top: 40px}
+  0% {top:250px}
+  50% {top: 265px}
+  100% {top: 250px;
+              left: 48%;}
 }
 
 /*tyson punch forward animation starter*/
@@ -226,7 +272,8 @@
   display: block;
   height: 117px;
   width: 74px;
-  background: url(../images/tyson-hit.png); 
+  background: url(../images/tyson-hit.png);
+  zoom: 1.5;
   animation: tyson-hit 1s steps(2);
 }
 
