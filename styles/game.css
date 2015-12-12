@@ -306,3 +306,20 @@
     background-position: -145px;
    }
 }
+
+.tyson-down {
+  display: block;
+  height: 117px;
+  width: 74px;
+  background: url(../images/tyson-down.png);
+  zoom: 1.5;
+  animation: tyson-down 3s steps(3);
+}
+
+/*tyson sprite stitching*/
+@keyframes tyson-down {
+   100% {
+    background-position: -234px;
+   }
+}
+

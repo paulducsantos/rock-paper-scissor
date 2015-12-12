@@ -3,18 +3,14 @@ $(document).ready(function(){
   var hands = ["rock", "paper", "scissors"];
   var playerWins = 0;
   var computerWins = 0;
-  var roundCount = 0;
+  var roundCount = 1;
   var playerHealth = 100;
+  var tysonHealth = 100;
 
   $("#health").html(playerHealth);
 
   $("button").on("click", function(){
-    if (roundCount === 5){
-    playerWins = 0;
-    computerWins = 0;
-    roundCount = 0;
-    }
-    roundCount++;
+    
     var playerHand = $(this).data("throw");
     var compSelect = hands[Math.floor(Math.random()*hands.length)];
     
@@ -32,14 +28,22 @@ $(document).ready(function(){
       } else {
         getHit();
       }
-      computerWins++;
     } else if (playerHand === "rock" && compSelect === "scissors"){
       console.log("you win");
-      attack();
-      playerWins++;
+      tysonHealth-= 25;
+      if (tysonHealth === 0){
+        tysonDown();
+      } else {
+        attack();
+      }
     } else if (playerHand === "paper" && compSelect === "rock"){
       console.log("you win");
-      attack();
+      tysonHealth-= 25;
+      if (tysonHealth === 0){
+        tysonDown();
+      } else {
+        attack();
+      }
       playerWins++;
     } else if (playerHand === "paper" && compSelect === "scissors"){
       console.log("you lose");
@@ -49,7 +53,6 @@ $(document).ready(function(){
       } else {
         getHit();
       }
-      computerWins++;
     } else if (playerHand === "scissors" && compSelect === "rock"){
       console.log("you lose");
       playerHealth-= 25;
@@ -58,17 +61,20 @@ $(document).ready(function(){
       } else {
         getHit();
       }
-      computerWins++;
     } else if (playerHand === "scissors" && compSelect === "paper"){
       console.log("you win");
-      attack();
-      playerWins++;
+      tysonHealth-= 25;
+      if (tysonHealth === 0){
+        tysonDown();
+      } else {
+        attack();
+      }
     }
 
-    $("#player-wins").html(playerWins);
-    $("#computer-wins").html(computerWins);
+    
     $("#health").html(playerHealth);
     healthCheck();
+    endRound();
     console.log("you picked " + playerHand, "computer picked " + compSelect);
     console.log("player wins " + playerWins, ", computerWins " + computerWins, ", games played " + roundCount);
   });
@@ -123,10 +129,41 @@ $(document).ready(function(){
         }, 1100)
     }
 
+    function tysonDown(){
+        $(".little-mac-container").toggleClass("little-mac-animate little-mac-attack");
+        $(".littleMac-player").toggleClass("littleMac little-mac-punch");
+        $(".mikeTyson").toggleClass("mikeTyson tyson-down");
+        setTimeout(function(){
+            $(".little-mac-container").toggleClass("little-mac-animate little-mac-attack");
+            $(".littleMac-player").toggleClass("littleMac little-mac-punch");
+            $(".tyson-down").toggleClass("mikeTyson tyson-down");
+        }, 3000);
+    }
+
     function healthCheck(){
         if (playerHealth === 0){
             alert("get up!");
         }
+    }
+
+    function endRound(){
+        if (playerHealth === 0 || tysonHealth === 0) {
+            roundCount++;
+            $("#round-count").html(roundCount);
+            if (tysonHealth === 0) {
+                playerWins++;
+            } else if (playerHealth === 0) {
+                computerWins++;
+            }
+            $("#player-wins").html(playerWins);
+            $("#computer-wins").html(computerWins);
+            playerHealth = 100;
+            tysonHealth = 100;
+        }
+    }
+
+    function gameWin() {
+        // add code if computer or player reaches 5 wins they win the game
     }
 
 
