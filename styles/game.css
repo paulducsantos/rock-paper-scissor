@@ -181,6 +181,29 @@
   -webkit-animation: little-mac-attack 2s;
 }
 
+.little-mac-down {
+  height: 65px;
+  width: 29px;
+  background: url(../images/little-mac.png) -87px -248px;
+  zoom: 2;
+  animation: little-mac-down 2s steps(5);
+}
+
+@-webkit-keyframes little-mac-down {
+  100%{
+    background-position: -285px -248px;
+  }
+}
+
+@keyframes little-mac-knockdown {
+  0% {top:340px}
+  100% {top: 380px}
+}
+
+.little-mac-knockdown {
+  animation: little-mac-knockdown 2s;
+}
+
 
 /*-------------------TYSON STUFF ---------------------------------------------*/
 .tyson-container{
