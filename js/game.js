@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
   var hands = ["rock", "paper", "scissors"];
-  var playerWins = 0;
-  var computerWins = 0;
+  var playerWins = 4;
+  var computerWins = 4;
   var roundCount = 1;
   var playerHealth = 100;
   var tysonHealth = 100;
@@ -72,9 +72,11 @@ $(document).ready(function(){
     }
 
     
-    $("#health").html(playerHealth);
+    
     healthCheck();
     endRound();
+    gameWin();
+    $("#health").html(playerHealth);
     console.log("you picked " + playerHand, "computer picked " + compSelect);
     console.log("player wins " + playerWins, ", computerWins " + computerWins, ", games played " + roundCount);
   });
@@ -164,6 +166,11 @@ $(document).ready(function(){
 
     function gameWin() {
         // add code if computer or player reaches 5 wins they win the game
+        if (playerWins === 5) {
+            alert("you win");
+        } else if (computerWins === 5) {
+            alert("tyson beat you");
+        }
     }
 
 
