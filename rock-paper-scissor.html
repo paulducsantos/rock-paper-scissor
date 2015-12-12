@@ -58,6 +58,23 @@
   <button class="btn btn-default rock" data-throw="rock">rock</button>
   <button class="btn btn-default paper" data-throw="paper">paper</button>
   <button class="btn btn-default scissors" data-throw="scissors">scissors</button>
+  <button class="btn btn-default" id="gameComplete">Game Over!</button>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="example-base example-leaderboard l-demo-container">
+        <table class="table table-hover table-striped" id="leaderboardTable">
+          <tr>
+            <th>Player</th>
+            <th>Score</th>
+          </tr>
+        </table>
+        <footer>
+          <input class="example-leaderboard-name" type="text" id="nameInput" placeholder="Enter a name">
+        </footer>
+      </div>
+    </div>
+  </div>
+  
 
 
   <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>

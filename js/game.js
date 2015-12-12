@@ -1,8 +1,21 @@
 $(document).ready(function(){
+  var rockPaperScissorFbase = new Firebase("https://boiling-heat-5230.firebaseio.com/");
+
+  var LEADERBOARD_SIZE = 5;
+
+  rockPaperScissorFbase.child("playerName").on("value", updateTable);
+  $("#gameComplete").on("click", function(){
+    rockPaperScissorFbase.child("userName").transaction(function(userWins) {
+      return (userWins || 0) + 1;
+    });
+  });
+
+
+
 
   var hands = ["rock", "paper", "scissors"];
-  var playerWins = 4;
-  var computerWins = 4;
+  var playerWins = 0;
+  var computerWins = 0;
   var roundCount = 1;
   var playerHealth = 100;
   var tysonHealth = 100;
