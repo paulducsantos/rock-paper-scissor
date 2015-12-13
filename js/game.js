@@ -1,20 +1,65 @@
 $(document).ready(function(){
-  var rockPaperScissorFbase = new Firebase("https://boiling-heat-5230.firebaseio.com/");
 
   var LEADERBOARD_SIZE = 5;
+  var leaderBoards = new Firebase("https://boiling-heat-5230.firebaseio.com/leaderBoards");
+  htmlForPath = {};
 
-  rockPaperScissorFbase.child("playerName").on("value", updateTable);
-  $("#gameComplete").on("click", function(){
-    rockPaperScissorFbase.child("userName").transaction(function(userWins) {
-      return (userWins || 0) + 1;
-    });
+  function handleScoreAdded(scoreSnapshot, prevScoreName) {
+    var newScoreRow = $("<tr/>");
+    newScoreRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name)));
+    newScoreRow.append($("<td/>").text(scoreSnapshot.val().score));
+
+    htmlForPath[scoreSnapshot.key()] = newScoreRow;
+    console.log(htmlForPath[scoreSnapshot.key()]);
+
+    if (prevScoreName === null) {
+      $("#leaderboardTable").append(newScoreRow);
+    }
+    else {
+      var lowerScoreRow = htmlForPath[prevScoreName];
+      lowerScoreRow.before(newScoreRow);
+    }
+  }
+
+  function handleScoreRemove(scoreSnapshot) {
+    var removedScoreRow = htmlForPath[scoreSnapshot.key()];
+    removedScoreRow.remove();
+    delete htmlForPath[scoreSnapshot.key()];
+  }
+  
+  var leaderBoardsView = leaderBoards.limitToLast(LEADERBOARD_SIZE);
+
+  leaderBoardsView.on("child_added", function(newScoreSnapshot, prevScoreName){
+    handleScoreAdded(newScoreSnapshot, prevScoreName);
+  });
+
+  leaderBoardsView.on("child_removed", function(oldScoreSnapshot){
+    handleScoreRemove(oldScoreSnapshot);
+  });
+
+  var changedCallback = function (scoreSnapshot, prevScoreName) {
+    handleScoreRemoved(scoreSnapshot);
+    handleScoreAdded(scoreSnapshot, prevScoreName);
+  }
+
+  leaderBoardsView.on('child_moved', changedCallback);
+  leaderBoardsView.on('child_changed', changedCallback);
+
+  $("#game-complete").on("click", function(e) {
+    e.preventDefault();
+    var userName = $("#name-input").val().trim();
+
+    var playerData = leaderBoards.child(userName);
+
+    playerData.setWithPriority({
+      name: userName,
+      score: playerWins
+    }, playerWins);
   });
 
 
-
-
   var hands = ["rock", "paper", "scissors"];
-  var playerWins = 0;
+  var playerWins = 8;
   var computerWins = 0;
   var roundCount = 1;
   var playerHealth = 100;
@@ -22,7 +67,7 @@ $(document).ready(function(){
 
   $("#health").html(playerHealth);
 
-  $("button").on("click", function(){
+  $(".selection").on("click", function(){
     
     var playerHand = $(this).data("throw");
     var compSelect = hands[Math.floor(Math.random()*hands.length)];

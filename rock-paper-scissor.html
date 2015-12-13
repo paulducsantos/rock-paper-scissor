@@ -55,10 +55,10 @@
   <div>Computer Wins:<span id="computer-wins">0</span></div>
 
 
-  <button class="btn btn-default rock" data-throw="rock">rock</button>
-  <button class="btn btn-default paper" data-throw="paper">paper</button>
-  <button class="btn btn-default scissors" data-throw="scissors">scissors</button>
-  <button class="btn btn-default" id="gameComplete">Game Over!</button>
+  <button class="btn btn-default rock selection" data-throw="rock">rock</button>
+  <button class="btn btn-default paper selection" data-throw="paper">paper</button>
+  <button class="btn btn-default scissors selection" data-throw="scissors">scissors</button>
+  
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="example-base example-leaderboard l-demo-container">
@@ -69,7 +69,8 @@
           </tr>
         </table>
         <footer>
-          <input class="example-leaderboard-name" type="text" id="nameInput" placeholder="Enter a name">
+          <input class="example-leaderboard-name" type="text" id="name-input" placeholder="Enter a name">
+          <button class="btn btn-default" id="game-complete">Game Over!</button>
         </footer>
       </div>
     </div>
