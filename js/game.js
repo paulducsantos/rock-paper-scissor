@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  
+
   var LEADERBOARD_SIZE = 5;
   var leaderBoards = new Firebase("https://boiling-heat-5230.firebaseio.com/leaderBoards");
   htmlForPath = {};
@@ -10,7 +12,6 @@ $(document).ready(function(){
     newScoreRow.append($("<td/>").text(scoreSnapshot.val().score));
 
     htmlForPath[scoreSnapshot.key()] = newScoreRow;
-    console.log(htmlForPath[scoreSnapshot.key()]);
 
     if (prevScoreName === null) {
       $("#leaderboardTable").append(newScoreRow);
@@ -59,7 +60,7 @@ $(document).ready(function(){
 
 
   var hands = ["rock", "paper", "scissors"];
-  var playerWins = 8;
+  var playerWins = 0;
   var computerWins = 0;
   var roundCount = 1;
   var playerHealth = 100;
@@ -212,8 +213,10 @@ $(document).ready(function(){
             $("#round-count").html(roundCount);
             if (tysonHealth === 0) {
                 playerWins++;
+                $("#win-round").modal("show");
             } else if (playerHealth === 0) {
                 computerWins++;
+                $("#lose-round").modal("show");
             }
             $("#player-wins").html(playerWins);
             $("#computer-wins").html(computerWins);
@@ -225,11 +228,11 @@ $(document).ready(function(){
     function gameWin() {
         // add code if computer or player reaches 5 wins they win the game
         if (playerWins === 5) {
-            alert("you win");
+            $("#leaderboards").modal("show");
         } else if (computerWins === 5) {
-            alert("tyson beat you");
+            $("#leaderboards").modal("show");
         }
     }
-
+    
 
 });
