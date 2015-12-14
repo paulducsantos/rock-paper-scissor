@@ -62,12 +62,12 @@
   </div><!-- /.modal -->
 
   
-  <div class="modal fade" id="leaderboards" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="leaderboards" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">LEADERBOARDS</h4>
+          <h4 class="modal-title" id="game-winner">LEADERBOARDS</h4>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -89,30 +89,48 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="restart-game">Play Again?</button>
       </div>
     </div>
   </div>
 
-
-  <!-- WIN ROUND END MODAL -->
-  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="win-round" id="win-round">
-    <div class="modal-dialog modal-sm">
+  <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" id="win-round">
+    <div class="modal-dialog">
       <div class="modal-content">
-        You won the round! Keep it up!
-        <img src="images/little-mac-win-round.png" />
-      </div>
-    </div>
-  </div> 
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">KEEP IT UP!</h4>
+        </div>
+        <div class="modal-body">
+          You won the round! Keep it up!
+          <img src="images/little-mac-win-round.png" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
-  <!-- LOSE ROUND END MODAL -->
-  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="lose-round" id="lose-round">
-    <div class="modal-dialog modal-sm">
+  <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" id="lose-round">
+    <div class="modal-dialog">
       <div class="modal-content">
-        You lost the round! Get it together!
-        <img src="images/little-mac-round-loss.png" />
-      </div>
-    </div>
-  </div>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">GET UP!</h4>
+        </div>
+        <div class="modal-body">
+          You lost the round! Get it together!
+          <img src="images/little-mac-round-loss.png" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal --> 
+
+
 
 
   <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>

@@ -2,6 +2,7 @@ $(document).ready(function(){
 
   $("#game-start").modal("show");
 
+
   var LEADERBOARD_SIZE = 5;
   var leaderBoards = new Firebase("https://boiling-heat-5230.firebaseio.com/leaderBoards");
   htmlForPath = {};
@@ -46,28 +47,22 @@ $(document).ready(function(){
   leaderBoardsView.on('child_moved', changedCallback);
   leaderBoardsView.on('child_changed', changedCallback);
 
-  $("#game-complete").on("click", function(e) {
-    e.preventDefault();
-    
-  });
-
 
   var hands = ["rock", "paper", "scissors"];
-  var playerWins = 0;
+  var playerWins = 3;
   var computerWins = 0;
-  var roundCount = 1;
+  var roundCount = 4;
   var playerHealth = 100;
   var tysonHealth = 100;
 
   $("#health").html(playerHealth);
 
   $(".selection").on("click", function(){
-    
+
     var playerHand = $(this).data("throw");
     var compSelect = hands[Math.floor(Math.random()*hands.length)];
     
     $("#round-count").html(roundCount);
-    
 
     if (playerHand === compSelect){
       console.log("tie game");
@@ -124,7 +119,6 @@ $(document).ready(function(){
     }
 
     endRound();
-    gameWin();
     $("#health").html(playerHealth);
     console.log("you picked " + playerHand, "computer picked " + compSelect);
     console.log("player wins " + playerWins, ", computerWins " + computerWins, ", games played " + roundCount);
@@ -193,29 +187,45 @@ $(document).ready(function(){
 
     function endRound(){
         if (playerHealth === 0 || tysonHealth === 0) {
-            roundCount++;
-            $("#round-count").html(roundCount);
-            if (roundCount <  5) {
-              if (tysonHealth === 0) {
-                playerWins++;
-                $("#win-round").modal("show");
-              } else if (playerHealth === 0) {
-                  computerWins++;
-                  $("#lose-round").modal("show");
-              }
-              $("#player-wins").html(playerWins);
-              $("#computer-wins").html(computerWins);
-              playerHealth = 100;
-              tysonHealth = 100;
-            };
+          roundCount++;
+          $("#round-count").html(roundCount);
+          if (roundCount < 5) {
+            if (tysonHealth === 0) {
+              playerWins++;
+              $("#win-round").modal("show");
+            } else if (playerHealth === 0) {
+              computerWins++;
+              $("#lose-round").modal("show");
+            }
+          } else {
+            if (tysonHealth === 0) {
+              playerWins++;
+              $("#win-round").modal("show");
+              $("#win-round").on("hide.bs.modal", gameWin)
+            } else if (playerHealth === 0) {
+              computerWins++;
+              $("#lose-round").modal("show");
+              $("#lose-round").on("hide.bs.modal", gameWin)
+            }
+          }
             
+
+
+            $("#player-wins").html(playerWins);
+            $("#computer-wins").html(computerWins);
+            playerHealth = 100;
+            tysonHealth = 100;
         }
     }
 
     function gameWin() {
         // add code if computer or player reaches 5 wins they win the game
-        if (roundCount === 5) {
-            $("#leaderboards").modal("show");
+        if (playerWins > computerWins) {
+          $("#game-winner").html($("#name-input").val() + " WINS THE MATCH!");
+          $("#leaderboards").modal("show");
+        } else if (computerWins > playerWins) {
+          $("#game-winner").html($("#name-input").val() + " LOSES THE MATCH! WOMP WOMP");
+          $("#leaderboards").modal("show");
         }
         var userName = $("#name-input").val().trim();
 
@@ -227,5 +237,12 @@ $(document).ready(function(){
         }, playerWins);
     }
     
-
+    $("#restart-game").on("click", function(){
+      playerHealth = 100;
+      tysonHealth = 100;
+      roundCount = 1;
+      playerWins = 0;
+      computerWins = 0;
+      $("#leaderboards").model("hide");
+    })
 });
