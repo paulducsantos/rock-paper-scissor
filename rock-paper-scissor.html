@@ -44,16 +44,30 @@
 
   
   
-
-
-  
-  
-  <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" id="leaderboards">
+  <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" id="game-start">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">LEADERBOARDS</h4>
+          <h4 class="modal-title">PLAYER NAME</h4>
+        </div>
+        <div class="modal-body">
+          <input class="example-leaderboard-name" type="text" id="name-input" placeholder="Enter a name">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  
+  <div class="modal fade" id="leaderboards" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">LEADERBOARDS</h4>
         </div>
         <div class="modal-body">
           <div class="row">
@@ -66,25 +80,22 @@
                   </tr>
                 </table>
                 <footer>
-                  <input class="example-leaderboard-name" type="text" id="name-input" placeholder="Enter a name">
-                  <button class="btn btn-default" id="game-complete">Game Over!</button>
+                  
                 </footer>
               </div>
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-  
-  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 
 
   <!-- WIN ROUND END MODAL -->
-  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="win-round">
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="win-round" id="win-round">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         You won the round! Keep it up!
@@ -94,7 +105,7 @@
   </div> 
 
   <!-- LOSE ROUND END MODAL -->
-  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="lose-round">
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="lose-round" id="lose-round">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         You lost the round! Get it together!

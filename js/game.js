@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  
+  $("#game-start").modal("show");
 
   var LEADERBOARD_SIZE = 5;
   var leaderBoards = new Firebase("https://boiling-heat-5230.firebaseio.com/leaderBoards");
@@ -48,14 +48,7 @@ $(document).ready(function(){
 
   $("#game-complete").on("click", function(e) {
     e.preventDefault();
-    var userName = $("#name-input").val().trim();
-
-    var playerData = leaderBoards.child(userName);
-
-    playerData.setWithPriority({
-      name: userName,
-      score: playerWins
-    }, playerWins);
+    
   });
 
 
@@ -130,9 +123,6 @@ $(document).ready(function(){
       }
     }
 
-    
-    
-    healthCheck();
     endRound();
     gameWin();
     $("#health").html(playerHealth);
@@ -201,37 +191,40 @@ $(document).ready(function(){
         }, 3000);
     }
 
-    function healthCheck(){
-        if (playerHealth === 0){
-            alert("get up!");
-        }
-    }
-
     function endRound(){
         if (playerHealth === 0 || tysonHealth === 0) {
             roundCount++;
             $("#round-count").html(roundCount);
-            if (tysonHealth === 0) {
+            if (roundCount <  5) {
+              if (tysonHealth === 0) {
                 playerWins++;
                 $("#win-round").modal("show");
-            } else if (playerHealth === 0) {
-                computerWins++;
-                $("#lose-round").modal("show");
-            }
-            $("#player-wins").html(playerWins);
-            $("#computer-wins").html(computerWins);
-            playerHealth = 100;
-            tysonHealth = 100;
+              } else if (playerHealth === 0) {
+                  computerWins++;
+                  $("#lose-round").modal("show");
+              }
+              $("#player-wins").html(playerWins);
+              $("#computer-wins").html(computerWins);
+              playerHealth = 100;
+              tysonHealth = 100;
+            };
+            
         }
     }
 
     function gameWin() {
         // add code if computer or player reaches 5 wins they win the game
-        if (playerWins === 5) {
-            $("#leaderboards").modal("show");
-        } else if (computerWins === 5) {
+        if (roundCount === 5) {
             $("#leaderboards").modal("show");
         }
+        var userName = $("#name-input").val().trim();
+
+        var playerData = leaderBoards.child(userName);
+
+        playerData.setWithPriority({
+          name: userName,
+          score: playerWins
+        }, playerWins);
     }
     
 
