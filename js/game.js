@@ -49,16 +49,18 @@ $(document).ready(function(){
 
 
   var hands = ["rock", "paper", "scissors"];
-  var playerWins = 3;
+  var playerWins = 0;
   var computerWins = 0;
-  var roundCount = 4;
+  var roundCount = 1;
   var playerHealth = 100;
   var tysonHealth = 100;
 
   $("#health").html(playerHealth);
 
-  $(".selection").on("click", function(){
+  $(".selection").on("click", selectionHandler);
 
+  function selectionHandler(){
+    $(".selection").off();
     var playerHand = $(this).data("throw");
     var compSelect = hands[Math.floor(Math.random()*hands.length)];
     
@@ -122,7 +124,10 @@ $(document).ready(function(){
     $("#health").html(playerHealth);
     console.log("you picked " + playerHand, "computer picked " + compSelect);
     console.log("player wins " + playerWins, ", computerWins " + computerWins, ", games played " + roundCount);
-  });
+    setTimeout(function(){
+      $(".selection").on("click", selectionHandler);
+    }, 2500);
+  }
 
     function tieGame (){
         $(".little-mac-container").toggleClass("little-mac-animate little-mac-dodge-left");
